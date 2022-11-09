@@ -1,5 +1,6 @@
 package ru.javarush.golf2.controller;
 
+import ru.javarush.golf2.model.Answer;
 import ru.javarush.golf2.model.Question;
 import ru.javarush.golf2.repository.Repository;
 
@@ -18,24 +19,24 @@ public class ServletQuest extends HttpServlet {
     @Override
     public void init() throws ServletException {
         repository = new Repository();
-        super.init();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.sendRedirect("index.jsp");
+        String id = request.getParameter("id");
+        if (id!= null){
+            int i = Integer.parseInt(id);
+            String nextQuestion = repository.getNextQuestion(i);
+            List<Answer> answersByQuestion = repository.getAnswersByQuestion(i);
+            request.setAttribute("question", nextQuestion);
+            request.setAttribute("answers", answersByQuestion);
+            request.getRequestDispatcher("quest.jsp").forward(request, response);
+        }
+//        response.sendRedirect("index.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String id = request.getParameter("id");
-//        if (id!= null){
-//            int i = Integer.parseInt(id);
-//            String nextQuestion = repository.getNextQuestion(i);
-//            request.setAttribute("question", nextQuestion);
-//            request.getRequestDispatcher("quest.jsp").forward(request, response);
-//        }
 //        else {
 //            response.sendRedirect("quest.jsp");
 //        }

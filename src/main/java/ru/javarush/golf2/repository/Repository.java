@@ -6,18 +6,16 @@ import ru.javarush.golf2.model.Question;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Repository {
     private List<Question> questionList;
 
     public Repository() {
-        this.questionList = questionList;
-        Arrays.asList(
-                questionList.add(new Question("question1", 1, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3)))),
-                questionList.add(new Question("question2", 2, Arrays.asList(new Answer("otvet3", 3), new Answer("otvet2",4)))),
-                questionList.add(new Question("question3", 3, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3)))),
-                questionList.add(new Question("question4", 4, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3))))
+        this.questionList = Arrays.asList(
+                new Question("question1", 1, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3))),
+                new Question("question2", 2, Arrays.asList(new Answer("otvet3", 3), new Answer("otvet2",4))),
+                new Question("question3", 3, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3))),
+                new Question("question4", 4, Arrays.asList(new Answer("otvet1", 2), new Answer("otvet2",3)))
         );
     }
 
